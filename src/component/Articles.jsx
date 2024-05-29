@@ -13,9 +13,9 @@ export default function Articles(props){
 
                 </div>
             <div className="button-wrapper">
-                {props.info.map((a)=>(
-                    <Infos class={a.class} bouton={a.bouton}></Infos>
-                ))}
+                <button className="btn outline">DETAILS</button>
+                <button className="btn fill">BUY NOW</button>
+
             </div>
         </div>
     )
