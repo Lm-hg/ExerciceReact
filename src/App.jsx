@@ -60,23 +60,36 @@ function App() {
 
 
  ]
+ const [nom,setNom] = useState("");
+ const [tarif,setTarif] =useState('')
+ const [details,setDetails] = useState('')
+ const [url,setUrl] =useState('')
+ const nomIn=(e)=>{
+  setNom(e.target.value);
+ }
+ const prixIn=(e)=>{
+  setTarif(e.target.value)
+ }
+ const detailIn=(e)=>{
+  setDetails(e.target.value);
+ }
+ const linkIn=(e)=>{
+  setUrl(e.target.value);
+ }
   const [art, setarticle]=useState(articles)
   const affiche= ()=>{
     var div=document.querySelector('.page')
       div.style.display='block';
   }
-  const premier=["Accueil","Femme","Homme","Enfant & bébé","A propos"];
+  const navLink=["Accueil","Femme","Homme","Enfant & bébé","A propos"];
   const close=()=>{
     var div=document.querySelector('.page')
 
     div.style.display='none'
   }
-  const formulaire = async (e) => {
+  
+  const Submitformulaire = async (e) => {
     e.preventDefault();
-    const nom = document.querySelector('#nom').value;
-    const tarif = document.querySelector('#prix').value;
-    const details = document.querySelector('#details').value;
-    const url = document.querySelector('#Lien').value;
     const prix = tarif + "euros";
     const data = { nom, prix, details, url };
   
@@ -95,11 +108,7 @@ function App() {
         });
         const daa=await response.json()
         console.log(daa);
-        if (daa.nom !=''
-          && daa.prix != ''
-          && daa.details!= ''
-          && daa.url != ''
-        ) {
+
           setarticle((prevArticles) => [...prevArticles, daa]);
           const form = document.querySelector('form')
           var div=document.querySelector('.page')
@@ -107,9 +116,6 @@ function App() {
           div.style.display='none'
 
 
-        } else {
-          console.log('Erreur lors de l\'envoi des données');
-        }
       }else{
         alert("Veuilez remplir chaque champ");
       }
@@ -124,7 +130,7 @@ function App() {
     <>
     <header>
       <Search></Search>
-      <Nav lien={premier}></Nav>
+      <Nav lien={navLink}></Nav>
       <Profil></Profil>
       <button onClick={affiche}>ADD</button>
     </header>
@@ -133,7 +139,7 @@ function App() {
     {art.map((a)=>(
       <Articles nom={a.nom} url={a.url}  details={a.details} prix={a.prix} ></Articles>
     ))}
-    <Form close={close} envoyer={formulaire}></Form>
+    <Form close={close} envoyer={Submitformulaire} nomIn={nomIn} prixIn={prixIn} detailIn={detailIn} linkIn={linkIn}></Form>
     </main>
     </>
   )
