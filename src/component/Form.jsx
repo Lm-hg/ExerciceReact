@@ -8,19 +8,19 @@ export default function Form(props){
                      <span onClick={props.close}>&times;</span>
                     <div className="a">
                         <label htmlFor="">Nom d'article :</label>
-                        <input type="text" name="" id="nom" onChange={props.nomIn} placeholder="Nom" required/>
+                        <input type="text" name="" id="nom" ref={props.nomRef} placeholder="Nom" required/>
                     </div>
                     <div className="a">
                         <label htmlFor="">Le prix :</label>
-                    <input type="number" name="" id="prix"onChange={props.prixIn} placeholder="Prix" required/>
+                    <input type="number" name="" id="prix"ref={props.prixRef} placeholder="Prix" required/>
                     </div>
                     <div className="a">
                         <label htmlFor="">Description :</label>
-                      <input type="text" name="" id="details"onChange={props.detailIn} placeholder="Details" required/>
+                      <input type="text" name="" id="details"ref={props.detailRef} placeholder="Details" required/>
                     </div>
                     <div className="a">
                         <label htmlFor="">Le lien d'image :</label>
-                        <input type="url" name="lien" id="Lien" onChange={props.linkIn}required />
+                        <input type="url" name="lien" id="Lien" ref={props.linkRef}required />
                     </div>
                     <div className="bouton">
 

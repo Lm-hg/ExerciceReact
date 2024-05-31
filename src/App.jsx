@@ -60,10 +60,12 @@ function App() {
 
 
  ]
- const [nom,setNom] = useState("");
- const [tarif,setTarif] =useState('')
- const [details,setDetails] = useState('')
- const [url,setUrl] =useState('')
+ const nomRef= useRef();
+ const tarifRef= useRef();
+ const detailsRef= useRef();
+ const urlRef= useRef();
+
+ const [art, setarticle]=useState(articles)
  const nomIn=(e)=>{
   setNom(e.target.value);
  }
@@ -76,7 +78,6 @@ function App() {
  const linkIn=(e)=>{
   setUrl(e.target.value);
  }
-  const [art, setarticle]=useState(articles)
   const affiche= ()=>{
     var div=document.querySelector('.page')
       div.style.display='block';
@@ -90,7 +91,11 @@ function App() {
   
   const Submitformulaire = async (e) => {
     e.preventDefault();
-    const prix = tarif + "euros";
+    const nom= nomRef.current.value;
+    const tarif= tarifRef.current.value;
+    const details= detailsRef.current.value;
+    const url= urlRef.current.value;
+    const prix = tarif + " euros";
     const data = { nom, prix, details, url };
   
     try {
@@ -139,7 +144,7 @@ function App() {
     {art.map((a)=>(
       <Articles nom={a.nom} url={a.url}  details={a.details} prix={a.prix} ></Articles>
     ))}
-    <Form close={close} envoyer={Submitformulaire} nomIn={nomIn} prixIn={prixIn} detailIn={detailIn} linkIn={linkIn}></Form>
+    <Form close={close} envoyer={Submitformulaire} nomRef={nomRef} prixRef={tarifRef} detailRef={detailsRef} linkRef={urlRef}></Form>
     </main>
     </>
   )
